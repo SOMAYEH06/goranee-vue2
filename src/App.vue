@@ -1,34 +1,33 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/artists">Artists</router-link>|
-      <router-link to="/artist-gallery">Artist Gallery</router-link>|
-      <router-link to="/song">Song</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app dir="rtl">
+    <v-app-bar app color="white" dark rounded="lg t-0" flat="true">
+      <v-row align="center" justify="center">
+        <v-btn class="mx-1" color="blue-grey lighten-4" rounded="xl" depressed to="/"> صفحه اصلی </v-btn>
+        <v-btn class="mx-1" color="blue-grey lighten-4" rounded="xl" depressed to="/artists"> هنرمندان </v-btn>
+      </v-row>
+    </v-app-bar>
+
+    <v-main class="bg-gray">
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+export default {
+  name: "App",
+
+  data: () => ({
+    //
+  }),
+};
+</script>
+
+<style scoped lang="scss">
+.bg-gray {
+  background-color: #edf2f7;
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+::v-deep .v-btn__content {
+  color: rgb(25,91,255);
 }
 </style>

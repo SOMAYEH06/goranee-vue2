@@ -1,7 +1,19 @@
 <template>
   <div>
-    <h1>{{ song.title }}</h1>
-    <div>{{ song.title_seo }}</div>
+    <h3>{{ song.title }}</h3>
+    <h4>{{ song.artists[0].name }}</h4>
+    <v-card class="mx-12 my-8" tile>
+      <v-list-item two-line v-for="(section, i) in song.sections" :key="i">
+        <v-list-item-content>
+          <v-list-item-title>{{section.lines[0].chords}}</v-list-item-title>
+          <v-list-item-subtitle>{{section.lines[0].text}}</v-list-item-subtitle>
+        </v-list-item-content>
+        <v-list-item-content>
+          <v-list-item-title>{{section.lines[1].chords}}</v-list-item-title>
+          <v-list-item-subtitle>{{section.lines[1].text}}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
   </div>
 </template>
 
@@ -27,7 +39,7 @@ export default {
         database: "tab",
         collection: "song",
         query: {
-          _id: "5feacb7d23ce501d2f333267",
+          _id: this.$route.params.id,
         },
         populates: ["artists", "genres"],
       };

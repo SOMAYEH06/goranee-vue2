@@ -18,14 +18,14 @@ const routes = [
     }
   },
   {
-    path: '/artist-gallery',
+    path: '/artist-gallery/:id',
     name: 'artistGallery',
     component: function () {
       return import('../views/ArtistGallery.vue')
     }
   },
   {
-    path: '/song',
+    path: '/song/:id',
     name: 'song',
     component: function () {
       return import('../views/Song.vue')

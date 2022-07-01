@@ -1,6 +1,18 @@
 <template>
   <div>
-    <h1 v-for="(song,i) in songs" :key="i">{{song.title}}</h1>
+    <v-container>
+      <v-row no-gutters>
+        <v-col v-for="(song, i) in songs" :key="i" cols="12" sm="4">
+          <v-card :loading="loading" class="mx-auto my-12" max-width="374" :to="/song/ + song._id">
+            <v-img height="250" :src="createImageLink(song.image)"></v-img>
+
+            <v-card-title>{{ song.title }}</v-card-title>
+
+            <v-card-title>{{ song.artists[0].name }}</v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -15,7 +27,7 @@ export default {
   },
 
   created() {
-    this.fetchSongs()
+    this.fetchSongs();
   },
 
   methods: {
@@ -35,13 +47,24 @@ export default {
         ],
         options: {
           sort: "-_id",
-          limit: 20
+          limit: 20,
         },
       };
 
-      axios.post(url, payload).then(axiosRes => {
+      axios.post(url, payload).then((axiosRes) => {
         this.songs = axiosRes.data.data;
-      })
+      });
+    },
+
+    createImageLink(imgFile) {
+      return (
+        "https://data.goranee.ir/assets/" +
+        imgFile.format +
+        "/" +
+        imgFile.tag +
+        "/" +
+        imgFile.fileName
+      );
     },
   },
 };
